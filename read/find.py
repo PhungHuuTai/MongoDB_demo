@@ -6,17 +6,24 @@ def find(db_name, col_name, mongo_uri, key_query, value_query):
     collection = db[col_name]
 
     filter_op = {key_query: value_query}
-    result = collection.find(filter_op, projection=["Departure", "Arrival", "DepartureTime", "ArrivalTime"])
-    return result
+    results = collection.find(filter_op, projection=["Departure", "Arrival", "DepartureTime", "ArrivalTime"])
+    return results
 
-def find():
-    pass
+def findone(db_name, col_name, mongo_uri, key_query, value_query):
+    client = MongoClient(mongo_uri)
+    db = client[db_name]
+    col = db[col_name]
+
+    filter_op = {key_query: value_query}
+    result = col.find_one(filter_op)
+    return result
 
 if __name__ == "__main__":
     mongo_uri = 'mongodb+srv://phunghuutai7:Huutai07admin@democluster1.gf9th9c.mongodb.net/?retryWrites=true&w=majority&appName=DemoCluster1'
     db_name = 'Ticket_data'
     collection_name = 'Plane'
-
+    result = findone(db_name, collection_name, mongo_uri, "Type", "Airbus A320")
+    print(result)
     # result = find(db_name, collection_name, mongo_uri, "No", "VJ144")
     # for f in result:
     #     print(f)
