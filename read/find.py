@@ -9,6 +9,8 @@ def find(db_name, col_name, mongo_uri, key_query, value_query):
     result = collection.find(filter_op, projection=["Departure", "Arrival", "DepartureTime", "ArrivalTime"])
     return result
 
+def find():
+    pass
 
 if __name__ == "__main__":
     mongo_uri = 'mongodb+srv://phunghuutai7:Huutai07admin@democluster1.gf9th9c.mongodb.net/?retryWrites=true&w=majority&appName=DemoCluster1'
